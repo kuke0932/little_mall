@@ -1,0 +1,53 @@
+<!--pages/pushOut/pushOut.wxml-->
+
+<view class='container'>
+  <view class='moneyDetal'>
+    <view>总金额：¥ {{totalPromotionMoney}}</view>
+    <view>已提现：¥ {{remainMoney}}</view>
+    <view>可提现：¥ {{promotionMoney}}</view>
+    <view>
+      <view class='getCash' bindtap='getCash'>去提现</view>
+    </view>
+  </view>
+  <view class='rule'>
+    <text class='t'>推广规则</text>
+  </view>
+  <view class='ruleDetails'>
+    <view class='v'><text class='t'>1.  您可通过我要推广，推广二维码进行产品推广。购买的用户通过您的分享下单之后您可获得佣金，购买的用户每购买一盒，您可获得2元佣金。仅当用户确认收货后，佣金方可到您的账户余额 。
+</text></view>
+    <view class='v'><text class='t'>2. 您可提现，提现最小额度为10元，每天仅可提现一次。</text></view>
+  </view>
+  <view class='tip' style='text-align: right;margin-top: 40rpx;padding-right: 30rpx;'>
+    <text style='color:#bbb;'>本规则解释权归河北鹑暖花开河北有限公司所有</text>
+  </view>
+  <view class='btnBox'>
+    <view class='left' >
+      <button style='border: 0;font-size:28rpx;height:100rpx;line-height:100rpx;' open-type="share" plain='true' hover-class='none'>推广</button>
+    </view>
+    <view class='right' bindtap='showPopup'>
+      <text style='color: #fff'>推广二维码</text>
+    </view>
+  </view>
+  <view wx:if='{{showPopup}}' class='qrcodePop' bindtap='closePopup'>
+    <view class='imgBox' catchtap='doNothing'>
+      <image class='img' style='width:500rpx; height:500rpx;' src='{{qrcodeUrl}}'></image>
+    <view class='c' catchtap='saveQrcode'>
+      <text class='t'>保存到相册</text>
+    </view>
+    </view>
+  </view>
+  <view wx:if='{{showCashPopup}}' class='cashModel' bindtap='closePopup'>
+    <view class='modelBox' catchtap='doNothing'>
+      <text class='t'>提现金额</text>
+      <view class='box'>
+        <text class='y'>¥</text>
+        <input class="i"  value="{{cash}}" bindinput='getValue' type="digit"/>
+      </view>
+      <text class='notice'>提示: 金额最多保留两位小数</text>
+      <view class='confirm_cancel'>
+        <view class='left' bindtap='cancelCash'>取消</view>
+        <view class='right' bindtap='confirmCash'>确认提现</view>
+      </view>
+    </view>
+  </view>
+</view>
